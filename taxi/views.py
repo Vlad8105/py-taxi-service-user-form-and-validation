@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, DeleteView
 
-from .forms import DriverLicenseForm
+from .forms import DriverLicenseForm, CarForm
 from .models import Driver, Car, Manufacturer
 
 
@@ -76,6 +76,22 @@ class CarUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("taxi:car-list")
 
 
+class CarCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Car
+    form_class = CarForm
+    success_url = reverse_lazy("taxi:car-list")
+
+@login_required
+def toggle_driver_assignment(request, car_pk):
+    car = get_object_or_404(Car, pk=car_pk)
+    current_user = request.user
+    if current_user in car.drivers.all():
+        car.drivers.remove(current_user)
+    else:
+        car.drivers.add(current_user)
+    return redirect("car-detail", pk=car_pk)
+
+
 class CarDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Car
     success_url = reverse_lazy("taxi:car-list")
@@ -107,3 +123,6 @@ class DriverLicenseListView(LoginRequiredMixin, generic.ListView):
     form_class = DriverLicenseForm
     template_name = "taxi/driver_license_update_form.html"
     success_url = reverse_lazy("taxi:driver-list")
+
+class DriverLicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
+    pass

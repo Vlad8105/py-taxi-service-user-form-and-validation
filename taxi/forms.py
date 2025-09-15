@@ -1,5 +1,5 @@
 from django import forms
-from .models import Driver
+from .models import Driver, Car
 import re
 
 
@@ -15,3 +15,12 @@ class DriverLicenseForm(forms.ModelForm):
         if not re.match(r"^[A-Z]{3}\d{5}$", license_number):
             raise forms.ValidationError("License must start with 3 uppercase letters followed by 5 digits.")
         return license_number
+
+
+class CarForm(forms.ModelForm):
+    class Meta:
+        model = Car
+        fields = ["make", "model", "year", "drivers"]
+        widgets = {
+            "drivers": forms.CheckboxSelectMultiple(),
+        }
