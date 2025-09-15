@@ -76,11 +76,6 @@ class CarUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("taxi:car-list")
 
 
-class CarCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Car
-    form_class = CarForm
-    success_url = reverse_lazy("taxi:car-list")
-
 @login_required
 def toggle_driver_assignment(request, car_pk):
     car = get_object_or_404(Car, pk=car_pk)
@@ -123,6 +118,7 @@ class DriverLicenseListView(LoginRequiredMixin, generic.ListView):
     form_class = DriverLicenseForm
     template_name = "taxi/driver_license_update_form.html"
     success_url = reverse_lazy("taxi:driver-list")
+
 
 class DriverLicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Driver

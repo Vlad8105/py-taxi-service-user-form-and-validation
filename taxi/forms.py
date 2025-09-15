@@ -14,7 +14,9 @@ class DriverLicenseForm(forms.ModelForm):
         if len(license_number) != 8:
             raise forms.ValidationError("License must be 8 characters long.")
         if not re.match(r"^[A-Z]{3}\d{5}$", license_number):
-            raise forms.ValidationError("License must start with 3 uppercase letters followed by 5 digits.")
+            raise forms.ValidationError(
+                "License must start with 3 uppercase letters"
+                " followed by 5 digits.")
         return license_number
 
 
@@ -37,5 +39,7 @@ class DriverLicenseUpdateForm(forms.ModelForm):
         if len(license_number) != 8:
             raise forms.ValidationError("License must be 8 characters long.")
         if not re.match(r"^[A-Z]{3}\d{5}$", license_number):
-            raise forms.ValidationError("License must start with 3 uppercase letters followed by 5 digits.")
+            raise forms.ValidationError(
+                "License must start with 3 uppercase letters"
+                " followed by 5 digits.")
         return license_number
