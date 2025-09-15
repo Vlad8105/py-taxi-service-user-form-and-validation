@@ -21,7 +21,7 @@ class DriverLicenseForm(forms.ModelForm):
 class CarForm(forms.ModelForm):
     class Meta:
         model = Car
-        fields = ["make", "model", "year", "drivers"]
+        fields = ["manufacturer", "drivers"]
         widgets = {
             "drivers": forms.CheckboxSelectMultiple(),
         }
