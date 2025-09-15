@@ -1,6 +1,7 @@
+from typing import re
+
 from django import forms
 from .models import Driver, Car
-import re
 
 
 class DriverLicenseForm(forms.ModelForm):
