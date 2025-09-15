@@ -25,3 +25,7 @@ class CarForm(forms.ModelForm):
         widgets = {
             "drivers": forms.CheckboxSelectMultiple(),
         }
+
+
+class DriverLicenseUpdateForm:
+    pass

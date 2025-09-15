@@ -5,7 +5,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, DeleteView
 
-from .forms import DriverLicenseForm, CarForm
+from .forms import DriverLicenseForm, CarForm, DriverLicenseUpdateForm
 from .models import Driver, Car, Manufacturer
 
 
@@ -125,4 +125,7 @@ class DriverLicenseListView(LoginRequiredMixin, generic.ListView):
     success_url = reverse_lazy("taxi:driver-list")
 
 class DriverLicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
-    pass
+    model = Driver
+    form_class = DriverLicenseUpdateForm
+    template_name = "taxi/driver_license_update_form.html"
+    success_url = reverse_lazy("driver-list")
