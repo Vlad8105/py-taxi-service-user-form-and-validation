@@ -6,10 +6,10 @@
   </h1>
   <h2>Driver: {{ driver.first_name }} {{ driver.last_name }}</h2>
 
-  <a href="{% url 'driver-update-license' pk=driver.pk %}" class="btn btn-primary">
+  <a href="{% url 'taxi:driver-update-license' pk=driver.pk %}" class="btn btn-primary">
     Update License
   </a>
-  <a href="{% url 'driver-delete' pk=driver.pk %}" class="btn btn-danger">
+  <a href="{% url 'taxi:driver-delete' pk=driver.pk %}" class="btn btn-danger">
     Delete Driver
   </a>
 

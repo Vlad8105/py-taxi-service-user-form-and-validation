@@ -18,11 +18,11 @@
   <p>Drivers: {{ car.drivers.all|join:", " }}</p>
 
   {% if user in car.drivers.all %}
-  <a href="{% url 'toggle-driver-assignment' car_pk=car.pk %}" class="btn btn-danger">
+  <a href="{% url 'taxi:toggle-driver-assignment' car_pk=car.pk %}" class="btn btn-danger">
     Delete me from this car
   </a>
   {% else %}
-  <a href="{% url 'toggle-driver-assignment' car_pk=car.pk %}" class="btn btn-primary">
+  <a href="{% url 'taxi:toggle-driver-assignment' car_pk=car.pk %}" class="btn btn-primary">
     Assign me to this car
   </a>
   {% endif %}
